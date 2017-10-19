@@ -19,21 +19,18 @@ reduced_data = PCA(n_components=2).fit_transform(data)
 
 #with Kmeans Clustering
 chartKmeans = clusteringKmeans(data,10)
-plt.figure(2)
+plt.figure(1)
 plt.scatter(reduced_data[:, 0], reduced_data[:, 1], c=chartKmeans)
-plt.title('Kmeans Result')
+plt.title('Kmeans')
 
 #with Spectral Clustering
 chartSpectral = clusteringSpectral(data,10)
-plt.figure(3)
+plt.figure(2)
 plt.scatter(reduced_data[:, 0], reduced_data[:, 1], c=chartSpectral)
-plt.title('Spectral Result')
+plt.title('Spectral')
 
 
 
 # Visualize result
-plt.figure(1)
-plt.scatter(reduced_data[:, 0], reduced_data[:, 1], c=digits.target)
-plt.title('Target Result')
 
 plt.show()

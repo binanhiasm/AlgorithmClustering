@@ -10,6 +10,5 @@ from sklearn.decomposition import PCA
 from sklearn.preprocessing import scale
 
 def clusteringKmeans(data,kclusters):
-    X = data
-    y = KMeans(n_clusters=kclusters).fit_predict(X)
+    y = KMeans(n_clusters=kclusters).fit_predict(data)
     return y
