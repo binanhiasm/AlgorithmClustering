@@ -8,19 +8,19 @@ from sklearn.cluster import KMeans
 from sklearn.datasets import load_digits
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import scale
-from TH1_Kmeans2 import clusteringKmeans
-from TH1_Spectral2 import clusteringSpectral
 from sklearn.datasets import fetch_lfw_people
 from skimage.feature import local_binary_pattern
 
-
 #extract feature to File
 people = fetch_lfw_people(min_faces_per_person=70, resize=0.4)
-
-data = np.array([]).reshape(0, 1850)
+data = []
+#count = 0
+def peopleHistogram(img):
+    feature = local_binary_pattern(img, P=8, R=0.5, method='uniform')
+    hist, bins = np.histogram(feature.ravel(), bins=256)
+    return hist
 for image in people.images:
-    feature = local_binary_pattern(image, P=8, R=0.5).flatten()
-    data = np.append(data,[feature],axis=0)
-#save file
+    hist = peopleHistogram(image)
+    data.append(hist)
 np.save(file='dataTarget.npy', arr=people.target)
 np.save(file='dataFeatures.npy', arr=data)
