@@ -23,8 +23,8 @@ from sklearn import metrics
 #print ("Number of images: %d" % len(people.images))
 
 #get data from file
-data = np.load('dataFeatures.npy')
-target = np.load('dataTarget.npy')
+data = np.load('HOGFeatures.npy')
+target = np.load('targetHOG.npy')
 
 #KmeansClustering
 def clusteringKmeans(data,kclusters):
