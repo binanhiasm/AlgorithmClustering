@@ -26,13 +26,12 @@ from skimage import color, exposure
 
 people = fetch_lfw_people(min_faces_per_person=70, resize=0.4)
 
-data = np.array([]).reshape(0, 1850)
+data = []
 count = 0
 for image in people.images:
-    img = color.rgb2gray(image)
-    x = hog(image, block_norm='L2', orientations=3)
-    data = np.append(data,[x])
+    hist = hog(image, block_norm='L2')
+    data.append(hist)
     count = count + 1
 print count
-print data
-#np.save(file='HOGFeatures.npy', arr=data)
+np.save(file='targetHOG.npy', arr= people.target)
+np.save(file='HOGFeatures.npy', arr=data)
